@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        Image Share
+        {% endblock title %}
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <style>
+        .nav-link {
+            color: #506690;
+        }
+
+        .nav-link:hover {
+            color: #335eea;
+        }
+
+        .btn-primary-soft {
+            background-color: rgba(51, 94, 234, .1);
+            color: #335eea;
+        }
+
+        .btn-primary-soft.active,
+        .btn-primary-soft:focus,
+        .btn-primary-soft:hover {
+            background-color: rgba(51, 94, 234, .15);
+            color: #335eea;
+        }
+
+        .lift {
+            transition: box-shadow .5s ease, transform .5s ease;
+        }
+
+        .lift:hover {
+            box-shadow: 0 1rem 2.5rem rgba(22, 28, 45, .1), 0 .5rem 1rem -.75rem rgba(22, 28, 45, .1);
+            transform: translate3d(0, -5px, 0);
+        }
+
+        .lift-more {
+            transition: box-shadow .4s ease, transform .4s ease;
+        }
+
+        .lift-more:hover {
+            box-shadow: 0 1rem 2.5rem rgba(22, 28, 45, .1), 0 .5rem 1rem -.75rem rgba(22, 28, 45, .1);
+            transform: translate3d(0, -12px, 0);
+        }
+
+        .btn {
+            font-size: 1.0625rem;
+            font-weight: 600;
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+        }
+
+        .form-control-flush {
+            border-left-width: 0;
+            border-radius: 0;
+            border-right-width: 0;
+            border-top-width: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .shadow-light {
+            box-shadow: 0 1.5rem 4rem rgba(22, 28, 45, .05);
+        }
+
+        .img-skewed {
+            perspective: 1500px;
+            transform-style: preserve-3d;
+        }
+
+        .img-skewed-item {
+            backface-visibility: hidden;
+            transform: rotateY(-35deg) rotateX(15deg);
+        }
+
+        .bg-dark-my {
+            background-color: #1b2a4e;
+        }
+
+        #btn-back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            z-index: 1
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <nav class="navbar navbar-expand-md navbar-light py-md-3">
+                <div class="container-fluid">
+
+                    <a class="navbar-brand d-md-none text-primary fw-bold" href="/"><i
+                            class="bi bi-image text-primary pe-1 float-start"></i>Image Share</a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navToggle101"><span class="navbar-toggler-icon"></span></button>
+
+                    <div class="collapse navbar-collapse justify-content-center justify-content-md-around"
+                        id="navToggle101">
+                        <a class="navbar-brand d-none d-md-block text-primary fw-bold" href="/"><i
+                                class="bi bi-image text-primary pe-1 float-start"></i>Image Share</a>
+                        <ul class="navbar-nav">
+                            <li class="nav-item text-center">
+                                <a class="nav-link" href="/">Home</a>
+                            </li>                        
+                            <li class="nav-item text-center d-md-none">
+                                <a class="nav-link btn btn-primary rounded-pill text-white"
+                                    href="{% url 'feed:post' %}">Upload Image</a>
+                            </li>
+                        </ul>
+                        <a class="btn btn-primary d-none d-md-block lift" href="{% url 'feed:post' %}">Upload Image</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
+
+
+    {% if messages %}
+    <div class="alert alert-success container text-center my-4">
+        <div class="messages">
+            {% for message in messages %}
+            <div {% if message.tags %} class="{{ message.tags }} display-3" {% endif %}>
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+
+    <section class="bg-light bg-gradient py-5">
+        {% block body %}
+
+
+        {% endblock body %}
+    </section>
+
+
+    <section class="my-4">
+        <div class="container text-center lead">
+            Copyright (c) Image Share 2022
+        </div>
+    </section>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

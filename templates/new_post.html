@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Add New Image
+{% endblock title %}
+
+
+{% block body %}
+<div class="container my-3 d-flex">
+    <div class="mx-auto">
+        <h1 class="text-center text-success display-3">Upload a New Image</h1>
+        <form method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-primary mx-auto" type="submit">Upload</button>
+        </form>
+    </div>
+</div>
+{% endblock body %}

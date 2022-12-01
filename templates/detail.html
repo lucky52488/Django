@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<div class="container">
+    <div class="text-center py-3">
+        <h2 class="display-3 text-secondary mb-5">{{object.text}}</h2>
+        <img src="{{object.image.url}}" class="img-fluid shadow-lg mb-5 bg-body rounded p-2" alt="xyz">
+    </div>
+</div>
+{% endblock body %}
